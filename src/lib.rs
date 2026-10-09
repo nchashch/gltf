@@ -271,6 +271,17 @@ pub struct Gltf {
 #[derive(Clone, Debug)]
 pub struct Document(json::Root);
 
+impl Document {
+    /// Returns a mutable reference to the underlying JSON root.
+    ///
+    /// This enables loaders to rewrite parsed metadata (e.g. normalizing the
+    /// byte offsets of `EXT_meshopt_compression` buffer views into their
+    /// decoded layout) before resolving accessor data.
+    pub fn json_mut(&mut self) -> &mut json::Root {
+        &mut self.0
+    }
+}
+
 impl Gltf {
     /// Convenience function that loads glTF from the file system.
     pub fn open<P>(path: P) -> Result<Self>

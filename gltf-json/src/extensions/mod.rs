@@ -61,6 +61,12 @@ pub const ENABLED_EXTENSIONS: &[&str] = &[
     // Allowlisted texture extensions. Processing is delegated to the user.
     #[cfg(any(feature = "allow_empty_texture", feature = "KHR_texture_basisu"))]
     "KHR_texture_basisu",
+    // Allowlisted mesh extension. Quantized accessors are handed to the user
+    // as-is (dequantization happens at render time via the node transform).
+    #[cfg(feature = "KHR_mesh_quantization")]
+    "KHR_mesh_quantization",
+    #[cfg(feature = "EXT_meshopt_compression")]
+    "EXT_meshopt_compression",
     #[cfg(feature = "EXT_texture_webp")]
     "EXT_texture_webp",
     #[cfg(feature = "allow_empty_texture")]
